@@ -1,49 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Frag Den Pete</title>
 
-  <script
-  src="https://code.jquery.com/jquery-3.2.1.min.js"
-  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-  crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/foundation/6.2.4/foundation.min.js"></script>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/foundation/6.2.4/foundation.min.css">
+<head>
+    <meta charset="UTF-8">
+    <title>Frag Den Pete</title>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/foundation/6.2.4/foundation.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/foundation/6.2.4/foundation.min.css" rel="stylesheet">
+    <style media="screen">
+      .wrapper {
+        margin: 2rem 1rem;
+      }
+    </style>
 </head>
+
 <body>
 
-  <pre id="object">
-
-  </pre>
-
-<div class="wrapper">
-  <div class="row">
-    <div class="sm-12">
-      <h1>Frag den Pete</h1>
+    <div class="wrapper">
+        <div class="row">
+            <div class="sm-12">
+                <h1>Frag den Pete</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="sm-12">
+                <form>
+                    <input id="user" type="text" name="user" placeholder="Dein Name">
+                    <input id="question" type="text" name="question" placeholder="Deine Frage">
+                    <input type="submit" value="Abschicken" class="button" onclick="putQuestion()">
+                </form>
+            </div>
+        </div>
+        <div class="row">
+            <div class="sm-12">
+                <h1>Bisherige Fragen</h1>
+                <ul id="list"></ul>
+            </div>
+        </div>
     </div>
-  </div>
-  <div class="row">
-    <div class="sm-12">
-      <form action="">
-        <input type="text" placeholder="Deine Frage">
-        <input type="submit" value="Abschicken" class="button">
-      </form>
+
+    <div class="row">
+        <div class="sm-12">
+            <pre id="object"></pre>
+        </div>
     </div>
-  </div>
-  <div class="row">
-    <div class="sm-12">
-      <h1>Bisherige Fragen</h1>
-      <ul id="list">
-        <li></li>
-      </ul>
-    </div>
-  </div>
-</div>
 
 
-<!-- firebase -->
-<script src="https://www.gstatic.com/firebasejs/3.7.5/firebase.js"></script>
-<script src="app.js" ></script>
+    <!-- firebase -->
+    <script src="https://www.gstatic.com/firebasejs/3.7.5/firebase.js"></script>
+    <script src="app.js"></script>
 </body>
+
 </html>
