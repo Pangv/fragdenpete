@@ -22,10 +22,12 @@
 
     // Synch list changes
     dbRefObject.on('child_added', function(snap) {
-        const li = document.createElement('li');
-        li.innerText = snap.key;
-        li.id = snap.key;
-        listObject.appendChild(li);
+        const div = document.createElement('div');
+        //
+        div.innerText = snap.key;
+        //
+        div.id = snap.key;
+        listObject.appendChild(div);
     });
     //
     dbRefObject.on('child_changed', function(snap) {
@@ -40,16 +42,48 @@
 
 })();
 
+function toggleContactInput() {
+    var x = document.getElementById('mail');
+    var y = document.getElementById('tel');
+    if (x.style.display === 'none') {
+        x.style.display = 'block';
+        y.style.display = 'none';
+    } else {
+        x.style.display = 'none';
+        y.style.display = 'block';
+    }
+}
+
+function checkContactInput() {
+  var mail = document.getElementById('id');
+  var tel = document.getElementById('id');
+
+  var activedInput = false;
+
+  if (document.mail.classList.contains('hidden')) {
+    activedInput = false;
+  }else {
+    activedInput = true;
+  }
+
+
+  return activedInput;
+}
+
 function putQuestion() {
   var usernameRef = document.getElementById('user').value;
   var questionRef = document.getElementById('question').value;
+  var contactRef = document.getElementById('mail').value;
 
   console.log(usernameRef);
   console.log(questionRef);
+  console.log(contactRef);
 
-  writeQuestionData(usernameRef, questionRef);
+  //emailjs.send('gmail','template_T3dtImZ2', {name: usernameRef, notes: questionRef});
+
+  writeQuestionData(usernameRef, questionRef, contactRef);
 }
 
-function writeQuestionData(user, question) {
-    firebase.database().ref('questions/' + question).set({question: question, user: user});
+function writeQuestionData(user, question, contact) {
+    firebase.database().ref('questions/' + question).set({question: question, user: user, contact: contact});
 }
