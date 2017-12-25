@@ -4,7 +4,7 @@
       <a href="#0" class="navbar-brand">Frag den Pete</a>
     </header>
     <main class="container-fluid">
-      <router-view v-on:addQuestion="addQuestion" :greeting="msg"></router-view>
+      <router-view v-on:addQuestion="addQuestion" :reference="questions"></router-view>
     </main>
     <footer class="fixed-bottom">
       <pre>{{ test }}</pre>
@@ -33,17 +33,17 @@ let config = {
 
 let app = Firebase.initializeApp(config);
 let db = app.database();
-
-let questionsRef = db.ref("firebase");
+let questionRef = db.ref("questions");
 
 export default {
   name: "app",
-  firebase: {
-    questions: questionsRef
+  firebase: function() {
+    return {
+      questions: questionRef.limitToLast(10)
+    };
   },
   data() {
     return {
-      msg: "Frag den Pete",
       newQuestions: {
         title: "",
         answer: "",
@@ -53,10 +53,14 @@ export default {
     };
   },
   methods: {
-    addQuestion: function() {
+    addQuestion: function(obj) {
+      this.$firebaseRefs.questions.push(obj);
+      console.log(obj);
       this.test += 1;
-      this.$emit("Hello");
     }
+  },
+  created: function() {
+    console.log(this.$firebaseRefs);
   }
 };
 </script>

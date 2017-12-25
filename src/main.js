@@ -13,9 +13,13 @@ Vue.config.productionTip = false;
 Vue.use(VueFire);
 
 /* eslint-disable no-new */
-new Vue({
+const vm = new Vue({
   el: "#app",
   router,
   template: "<App/>",
   components: { App }
 });
+
+Vue.prototype.$instance = vm;
+
+console.log(vm);

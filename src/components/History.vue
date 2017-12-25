@@ -2,7 +2,7 @@
   <div class="history">
     <label for="exampleInputEmail1">Bisher gestellte Fragen</label>
     <ul class="list-group">
-      <li class="list-group-item" v-for="(q, index) in questions" :key="index">
+      <li class="list-group-item" v-for="(q, index) in questionRef" :key="index">
         <a class="text-info dropdown-toggle" data-toggle="collapse" :href="'#'+q.qnum" aria-expanded="false" :aria-controls="'#'+q.index">
          {{q.question}} 
         </a>
@@ -20,20 +20,12 @@
 <script>
 export default {
   name: "qHistory",
+  props: {
+    reference: Array
+  },
   data() {
     return {
-      questions: [
-        {
-          qnum: 0,
-          question: "Frage 1",
-          answer: "Lorem ipsum dolor sit amet consectetur adipisicing elit."
-        },
-        {
-          qnum: 1,
-          question: "Frage 2",
-          answer: "Lorem ipsum dolor sit amet consectetur adipisicing elit."
-        }
-      ]
+      questionRef: this.reference
     };
   }
 };

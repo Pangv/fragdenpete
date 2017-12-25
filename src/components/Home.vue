@@ -12,7 +12,7 @@
       </section>
     </div>
     <div class="col-xs-12 col-sm-5">
-      <q-history/>
+      <q-history :reference="questionRef"/>
     </div>
   </div>
 </template>
@@ -24,22 +24,18 @@ import qForm from "./QForm";
 export default {
   name: "home",
   props: {
-    greeting: String
+    greeting: String,
+    reference: Array
   },
   components: { qHistory, qForm },
   data() {
-    return {};
+    return {
+      questionRef: this.reference
+    };
   },
   methods: {
-    addQuestion: function() {
-      this.$emit("addQuestion");
-      this.$on(
-        "Hello",
-        function() {
-          this.$emit("Hello");
-        },
-        10000
-      );
+    addQuestion: function(obj) {
+      this.$emit("addQuestion", obj);
     }
   }
 };
